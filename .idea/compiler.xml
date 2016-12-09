@@ -18,5 +18,13 @@
         <processorPath useClasspath="true" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ktime-examples_main" target="1.8" />
+      <module name="ktime-examples_test" target="1.8" />
+      <module name="ktime_main" target="1.8" />
+      <module name="ktime_test" target="1.8" />
+      <module name="lib_main" target="1.8" />
+      <module name="lib_test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

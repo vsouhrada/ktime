@@ -4,17 +4,21 @@ apply plugin: 'idea'      // for intellij project
 apply from: 'dependencies.gradle'
 apply plugin: 'maven'
 
-group 'com.github.vsouhrada'
+group 'com.vsouhrada.kotlin'
 version '0.1.0'
 
 sourceCompatibility = 1.8
 
 buildscript {
+    ext.kotlin_version = '1.1-M03'
+
     repositories {
+        jcenter()
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
         mavenCentral()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.4"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -29,8 +33,6 @@ task wrapper(type: Wrapper) {
 
 repositories {
     jcenter()
-    maven { url project.getProperties().get("nexusRepo").toString() }
-    maven { url project.getProperties().get("nexusSnapshotRepo").toString() }
     mavenCentral()
 }
 
@@ -41,6 +43,7 @@ dependencies {
     compile domainDependencies.kotlinStdLib
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
 idea {
@@ -55,55 +58,8 @@ idea {
         excludeDirs += file("$buildDir/kotlin-classes")
         excludeDirs += file("$buildDir/libs")
         excludeDirs += file("$buildDir/test-results")
-//        sourceDirs += file("$buildDir/generated/source/kapt/main/")
-//        generatedSourceDirs += "$buildDir/generated/source/kapt/main/"
     }
 
-}
-
-uploadArchives {
-    configuration = configurations.archives
-    repositories.mavenDeployer {
-        //beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-        repository(url: nexusRepo) {
-            authentication(userName: nexusUsername, password: nexusPassword)
-        }
-
-        snapshotRepository(url: nexusSnapshotRepo) {
-            authentication(userName: nexusUsername, password: nexusPassword)
-        }
-
-        pom.project {
-            groupId 'com.github.vsouhrada'
-            artifactId 'ktime'
-            version version
-            name 'ktime'
-            description 'Kotlin extensions for Java 8 java.time API and others utilities with date and time'
-            url 'https://github.com/vsouhrada/ktime'
-            inceptionYear '2016'
-
-//            scm {
-//                connection 'scm:git:git://vsouhrada.github/srv/git/com.github.vsouhrada/ktime'
-//            }
-
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-
-            developers {
-                developer {
-                    id 'vsouhrada'
-                    name 'Vaclav Souhrada'
-                    email 'v.souhrada@gmail.com'
-                }
-            }
-        }
-    }
 }
 
 task sourcesJar(type: Jar) {
@@ -115,4 +71,4 @@ artifacts {
     archives sourcesJar
 }
 
-task deploy(dependsOn: uploadArchives)
+//task deploy(dependsOn: uploadArchives)

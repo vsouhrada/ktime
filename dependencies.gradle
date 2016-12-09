@@ -1,18 +1,12 @@
 ext {
-    group 'com.gk-software.kotlin'
+    group 'com.vsouhrada.kotlin'
     lib_version = '0.1.0'
-
-    nexusRepo = 'http://build.es.gk-software.com/nexus/content/repositories/releases'
-    nexusSnapshotRepo = 'http://build.es.gk-software.com/nexus/content/repositories/snapshots'
-
-    project.setProperty("nexusRepo", nexusRepo)
-    project.setProperty("nexusSnapshotRepo", nexusSnapshotRepo)
 
     /// Gradle
     gradleVersion = '3.0'
 
     /// Kotlin
-    kotlinVersion = '1.0.4'
+    kotlinVersion = '1.1-M03'
 
     /// Domain Common Dependencies
 

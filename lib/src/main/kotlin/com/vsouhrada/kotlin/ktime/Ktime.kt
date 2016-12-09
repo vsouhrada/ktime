@@ -1,4 +1,4 @@
-package com.github.vsouhrada.ktime
+package com.vsouhrada.kotlin.ktime
 
 import java.sql.Date
 import java.time.*

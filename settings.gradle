@@ -1,2 +1,4 @@
 rootProject.name = 'ktime'
+include 'ktime-examples'
+include 'lib'
 
