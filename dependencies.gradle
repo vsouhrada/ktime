@@ -1,0 +1,24 @@
+ext {
+    group 'com.gk-software.kotlin'
+    lib_version = '0.1.0'
+
+    nexusRepo = 'http://build.es.gk-software.com/nexus/content/repositories/releases'
+    nexusSnapshotRepo = 'http://build.es.gk-software.com/nexus/content/repositories/snapshots'
+
+    project.setProperty("nexusRepo", nexusRepo)
+    project.setProperty("nexusSnapshotRepo", nexusSnapshotRepo)
+
+    /// Gradle
+    gradleVersion = '3.0'
+
+    /// Kotlin
+    kotlinVersion = '1.0.4'
+
+    /// Domain Common Dependencies
+
+    domainDependencies = [
+            kotlinStdLib      : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
+            kotlinTestLib     : "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
+            kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+    ]
+}
